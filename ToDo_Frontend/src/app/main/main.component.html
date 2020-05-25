@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-sm-4">
+        <h5 class="card-text" style="color: #0f33f5">{{ dateTime | date:'mediumDate' }}</h5>
+        <h5 class="card-text" style="color: #0f33f5">{{ dateTime | date:'mediumTime' }}</h5>   
+    </div>
+    <div class="col-sm-4">
+        <h1 class="row justify-content-center font-weight-bold" style="font-size: 3em;">To Do App</h1>
+    </div>
+    <div class="col-sm-4">
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <button class="nav-link btn btn-primary btn-block" (click)="logoutUser()">Logout</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<hr class="my-4">
+
+<div class="row">
+    <div class="col-sm-4">
+        <app-task-list [tasks]="tasks" (selectTask)="taskSelected($event)" (editedTask)="taskEdited($event)"
+        (addedTask)="taskAdded()" (deleted_task)="taskDeleted($event)" (statusChangedTask)="taskUpdated($event)"></app-task-list>
+    </div>
+    <div class="col-sm-8">
+        <app-task-details [task]="selectedTask"></app-task-details>
+        <app-task-form *ngIf="editTask" [task]="editTask" (createdTask)="createdTask($event)" 
+        (updatedTask)="taskUpdated($event)" (generatedError)="errorHandler($event)"></app-task-form>
+    </div>
+</div>
+
+<div *ngIf="error_occurred" class="container">
+    <hr>
+    <div class="alert alert-danger" role="alert">
+        {{ error_msg|json }} <br> <br>
+        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="AlertClosed()">Close</button>
+    </div>
+</div>
+
+

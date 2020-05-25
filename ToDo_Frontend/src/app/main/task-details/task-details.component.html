@@ -1,0 +1,17 @@
+<h3 class="row justify-content-center">Task Description</h3>
+<hr>
+<div *ngIf="task "class="container">
+    <div class="jumbotron" style="background-color:#99C7F8">
+        <h3 class="text-center font-weight-bold"><u>{{ task.name }}</u></h3>
+        <br>
+        <dl class="row">
+            <dt class="col-sm-3">Status:</dt>
+            <dd *ngIf="task.status"class="col-sm-9">Completed</dd>
+            <dd *ngIf="! task.status"class="col-sm-9">Pending</dd>
+            <dt class="col-sm-3">Start time:</dt>
+            <dd class="col-sm-9">{{task.start_time | date:'medium'}}</dd>
+            <dt class="col-sm-3">End time:</dt>
+            <dd class="col-sm-9">{{task.end_time | date:'medium'}}</dd>
+        </dl>
+    </div>  
+</div>
